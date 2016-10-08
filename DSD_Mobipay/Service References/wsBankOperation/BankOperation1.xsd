@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DSD.BusinessEntity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DSD.BusinessEntity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://dsdmobipay.apphb.com/BankOperation.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="UsuariosBE">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MensajesBE">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="gUsuario" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="iRol" type="xs:int" />
+          <xs:element minOccurs="0" name="xApellidos" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xDocumento" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xNombres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="xUsuario" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UsuariosBE" nillable="true" type="tns:UsuariosBE" />
+  <xs:complexType name="MensajesBE">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="lError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="xMensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="xRespuesta" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MensajesBE" nillable="true" type="tns:MensajesBE" />
+  <xs:complexType name="MovimientosBE">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:MensajesBE">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MovimientosBE" nillable="true" type="tns:MovimientosBE" />
+</xs:schema>
