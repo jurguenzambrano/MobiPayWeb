@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DSD_Mobipay.wsBankOperation;
+using DSD_Mobipay.MonederoService;
 using System.Web.Script.Serialization;
 using System.Net;
 using System.IO;
@@ -16,18 +16,25 @@ namespace DSD_Mobipay.Controllers
         public string RealizarRecargaMonedero(string xCodigoUsuario, decimal mMonto)
         {
 
-            //var wsMobipay = new wsBankOperation.BankOperationClient();
+            var wsMobipay = new MonederosServiceClient();
+            var recargaRequest = new RecargaBE();
+            var movimientoBE = new MovimientoBE();
+            Random rnd = new Random();
+            var xResult = "";
 
-            //Guid gBanco = Guid.Empty;
-            //try
-            //{
-            //    string ownerId = "89458299-D68E-435E-8369-5BC9D9C85DCD";
-            //    gBanco = new Guid(ownerId);
-            //}
-            //catch
-            //{
-            //    // implement catch 
-            //}
+            recargaRequest.CodigoCliente = xCodigoUsuario;
+            recargaRequest.Monto = mMonto;
+            recargaRequest.OperacionBanco = "BCP" + rnd.Next(10000, 99999);
+
+            try
+            {
+                movimientoBE = wsMobipay.Recargar(recargaRequest);
+                xResult = "True";
+            }
+            catch (Exception ex)
+            {
+                xResult = ex.Message;
+            }
 
             //Random rnd = new Random();
             //long iOperacionBanco = rnd.Next(10000, 99999);
@@ -35,7 +42,41 @@ namespace DSD_Mobipay.Controllers
             //var movimientoBE = wsMobipay.refillwallet(gBanco, xCodigoUsuario, "00000" + iOperacionBanco.ToString(), mMonto);
 
             //return movimientoBE.lError + "|" + movimientoBE.xRespuesta;
-            return "";
+            return xResult;
+        }
+
+        [ValidateAntiForgeryToken]
+        public string RealizarExtornoMonedero(string xCodigoUsuario, string xOperacion, decimal mMonto)
+        {
+
+            var wsMobipay = new MonederosServiceClient();
+            var extornoRequest = new ExtornoBE();
+            var movimientoBE = new MovimientoBE();
+            Random rnd = new Random();
+            var xResult = "";
+
+            extornoRequest.CodigoCliente = xCodigoUsuario;
+            extornoRequest.Monto = mMonto;
+            extornoRequest.OperacionBancoExtorno = xOperacion;
+            extornoRequest.OperacionBanco = "BCP" + rnd.Next(10000, 99999);
+
+            try
+            {
+                movimientoBE = wsMobipay.Extornar(extornoRequest);
+                xResult = "True";
+            }
+            catch (Exception ex)
+            {
+                xResult = ex.Message;
+            }
+
+            //Random rnd = new Random();
+            //long iOperacionBanco = rnd.Next(10000, 99999);
+
+            //var movimientoBE = wsMobipay.refillwallet(gBanco, xCodigoUsuario, "00000" + iOperacionBanco.ToString(), mMonto);
+
+            //return movimientoBE.lError + "|" + movimientoBE.xRespuesta;
+            return xResult;
         }
 
         [ValidateAntiForgeryToken]
@@ -49,6 +90,7 @@ namespace DSD_Mobipay.Controllers
 
             // Obtener Usuario
             var xURLService = "http://mobipayservice.apphb.com/UsuariosService.svc/usuarios/" + xCodigoUsuario;
+            //var xURLService = "http://localhost:28906/UsuariosService.svc/usuarios/" + xCodigoUsuario;
             req = (HttpWebRequest)WebRequest.Create(xURLService);
             req.Method = "GET";
             UsuarioBE UsuarioResult = new UsuarioBE();

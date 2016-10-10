@@ -13,6 +13,51 @@
         return operacion[0];
     }
 }
+function enviarServidorPost(url, metodo, frm) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", url, true);
+    xhr.msCaching = 'disabled';
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            metodo(xhr.responseText);
+        }
+        else {
+        }
+    }
+    xhr.send(frm);
+}
+var buscarCliente = document.getElementById("buscarCliente");
+buscarCliente.onclick = function () {
+    var xCodUsuario = document.getElementById("codigoCliente");
+    BuscarUsuario(xCodUsuario.value);
+
+}
+
+function BuscarUsuario(xCodigoUsuario) {
+    var frm = new FormData();
+    token = document.getElementsByName("__RequestVerificationToken")
+    frm.append("__RequestVerificationToken", token[0].value);
+    frm.append("xCodigoUsuario", xCodigoUsuario);
+
+    var url = "../Bank/BuscarUsuario";
+    enviarServidorPost(url, cargarCliente, frm);
+}
+
+function cargarCliente(xDatos) {
+    console.log(xDatos);
+    var xResult = (xDatos).split('|');
+    var realizarExtorno = document.getElementById("realizarExtorno")
+
+    if (xResult[0] != "True") {
+        clienteNoEncontrado(xResult[0]);
+        realizarExtorno.setAttribute("disabled", "disabled");
+    } else {
+        var cliente = { "nombre": xResult[1], "dni": xResult[2] }
+        realizarExtorno.removeAttribute("disabled");
+        mostrarCliente(cliente);
+    }
+}
 
 function mostrarCliente(cliente) {
     $("#extornoMonedero > .form-group.data").removeClass("hidden");
@@ -21,14 +66,14 @@ function mostrarCliente(cliente) {
     $("#dni").html(cliente.dni);
     borrarMensajes($("#mensajes"));
 }
-function clienteNoEncontrado() {
+function clienteNoEncontrado(xResult) {
     $("#extornoMonedero > .form-group.data").addClass("hidden");
     $("#realizarRecarga").attr("disabled", "disabled").prop('disabled');
     $("#cliente").html("");
     $("#dni").html("");
     var $mensajes = $("#mensajes");
     $mensajes.attr("class", "alert alert-danger");
-    mostrarMensajes(['Cliente no encontrado'], $("#mensajes"));
+    mostrarMensajes([xResult], $("#mensajes"));
 }
 
 
@@ -42,6 +87,12 @@ function montosDistintos() {
     var $mensajes = $("#mensajes");
     $mensajes.attr("class", "alert alert-danger");
     mostrarMensajes(['El monto a extornar es incorrecto'], $("#mensajes"));
+}
+
+function montrarResultadoError(xMensaje) {
+    var $mensajes = $("#mensajes");
+    $mensajes.attr("class", "alert alert-danger");
+    mostrarMensajes([xMensaje], $("#mensajes"));
 }
 
 function mostrarExtorno() {
@@ -86,19 +137,6 @@ function puedoRealizarRecarga(cliente, monto) {
     }
 }
 
-function realizarRecarga(cliente, monto) {
-    var $mensajes = $("#mensajes");
-    var puedoRecargar = puedoRealizarRecarga(cliente, monto);
-    if (puedoRecargar.estado == 1) {
-        $mensajes.attr("class", "alert alert-success");
-        mostrarMensajes(['La recarga se hizo satisfactoriamente'], $mensajes);
-    } else {
-        $mensajes.attr("class", "alert alert-danger");
-        var mensaje = puedoRecargar.mensaje;
-        mostrarMensajes([mensaje], $mensajes);
-    }
-}
-
 $(function () {
     //$("#buscarCliente").click(function (e) {
     //    e.preventDefault();
@@ -117,7 +155,9 @@ $(function () {
         var nroOperacion = $("#nroOperacion").val();
         var monto = $("#monto").val();
         var operacion = buscarOperacionCliente(codCliente, nroOperacion);
-        
+
+        RealizarExtorno(codCliente, nroOperacion, monto);
+        /*
         if (!operacion) {
             nroNoEncontrada()
         } else {
@@ -131,7 +171,29 @@ $(function () {
                 montosDistintos();
             }
         }
-
+        */
     });
+
+    function RealizarExtorno(xCodigoUsuario, xOperacion, mMonto) {
+        var frm = new FormData();
+        token = document.getElementsByName("__RequestVerificationToken")
+        frm.append("__RequestVerificationToken", token[0].value);
+        frm.append("xCodigoUsuario", xCodigoUsuario);
+        frm.append("xOperacion", xOperacion);
+        frm.append("mMonto", mMonto);
+
+        var url = "../Bank/RealizarExtornoMonedero";
+        enviarServidorPost(url, ResultadoExtorno, frm);
+    }
+    function ResultadoExtorno(xDatos) {
+        if (xDatos == "True") {
+            //console.log("todo ok");
+            //var cliente = buscarCliente($("#codigoCliente"));
+            mostrarExtorno();
+        } else {
+            //console.log("error alguno");
+            montrarResultadoError(xDatos);
+        }
+    }
 
 });

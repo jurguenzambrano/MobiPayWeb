@@ -13,18 +13,18 @@
     xhr.send(frm);
 }
 function MostrarResultadoRecarga(xData) {
-    var xResult = xData.split("|");
+    var xResult = xData;
     var msj = "";
     var $mensajes = $("#mensajes");
 
-    if (xResult[0] == "True") {
+    if (xResult != "True") {
         $mensajes.attr("class", "alert alert-danger");
-        msj = xResult[1];
+        msj = xResult;
         mostrarMensajes([msj], $mensajes);
     }
     else {
         $mensajes.attr("class", "alert alert-success");
-        msj = xResult[1];
+        msj = "Se realizó la recarga correctamente";
         mostrarMensajes([msj], $mensajes);
     }
 }
@@ -110,7 +110,6 @@ function mostrarCliente(cliente) {
     $("#dni").html(cliente.dni);
     borrarMensajes($("#mensajes"));
 }
-
 function clienteNoEncontrado(xResult) {
     $("#recargarMonedero > .form-group.data").addClass("hidden");
     $("#realizarRecarga").attr("disabled", "disabled").prop('disabled');

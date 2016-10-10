@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8f5e9c24-398b-4fff-8418-7e0a6bb9a8cf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://mobipayservice.apphb.com/MonederosService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MonederosService.xsd" MetadataType="Schema" ID="532720c1-4c35-4428-a2a3-6dcd03b84d0e" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MonederosService.disco" MetadataType="Disco" ID="79513b3e-6f2b-4828-ae82-df507cabf0b7" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?disco" />
+    <MetadataFile FileName="MonederosService1.xsd" MetadataType="Schema" ID="1da077ae-d8df-4305-89ea-1c5e3aa6ca00" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MonederosService.wsdl" MetadataType="Wsdl" ID="f56a43f3-18a1-4089-8be5-3a4afcd9d546" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?wsdl" />
+    <MetadataFile FileName="MonederosService2.xsd" MetadataType="Schema" ID="fa0d9dcc-4704-49f4-99e5-9e01d15711c7" SourceId="1" SourceUrl="http://mobipayservice.apphb.com/MonederosService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

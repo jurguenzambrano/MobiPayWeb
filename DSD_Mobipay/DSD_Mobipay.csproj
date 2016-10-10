@@ -104,30 +104,27 @@
     <Content Include="Scripts\Bank\clientes.js" />
     <Content Include="Scripts\Bank\consultar-codigo-usuario.js" />
     <Content Include="Scripts\Bank\extorno.js" />
-    <None Include="Service References\wsBankOperation\BankOperation1.wsdl" />
-    <None Include="Service References\wsBankOperation\BankOperation3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\wsBankOperation\BankOperation31.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\wsBankOperation\BankOperation32.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\wsBankOperation\configuration91.svcinfo" />
-    <None Include="Service References\wsBankOperation\configuration.svcinfo" />
-    <None Include="Service References\wsBankOperation\BankOperation.disco" />
-    <Content Include="Service References\wsBankOperation\DSD_Mobipay.wsBankOperation.MovimientosBE.datasource">
+    <Content Include="Scripts\Bank\extorno.js" />
+    <None Include="Service References\MonederoService\configuration91.svcinfo" />
+    <None Include="Service References\MonederoService\configuration.svcinfo" />
+    <Content Include="Service References\MonederoService\DSD_Mobipay.MonederoService.MovimientoBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\wsBankOperation\DSD_Mobipay.wsBankOperation.UsuariosBE.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\wsBankOperation\Reference.svcmap">
+    <None Include="Service References\MonederoService\MonederosService.wsdl" />
+    <None Include="Service References\MonederoService\MonederosService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MonederoService\MonederosService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MonederoService\MonederosService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MonederoService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Scripts\Bank\extorno.js" />
+    <None Include="Service References\MonederoService\MonederosService.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\wsBankOperation\Reference.cs">
+    <Compile Include="Service References\MonederoService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -173,7 +170,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\wsBankOperation\" />
+    <WCFMetadataStorage Include="Service References\MonederoService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
