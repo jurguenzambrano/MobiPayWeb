@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -102,8 +104,19 @@
     <Content Include="Scripts\Bank\clientes.js" />
     <Content Include="Scripts\Bank\consultar-codigo-usuario.js" />
     <Content Include="Scripts\Bank\extorno.js" />
+    <None Include="Service References\wsBankOperation\BankOperation1.wsdl" />
+    <None Include="Service References\wsBankOperation\BankOperation3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsBankOperation\BankOperation31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsBankOperation\BankOperation32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\wsBankOperation\configuration91.svcinfo" />
     <None Include="Service References\wsBankOperation\configuration.svcinfo" />
+    <None Include="Service References\wsBankOperation\BankOperation.disco" />
     <Content Include="Service References\wsBankOperation\DSD_Mobipay.wsBankOperation.MovimientosBE.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -142,16 +155,6 @@
     <Content Include="Content\static\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\static\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\Bank\realizarExtorno.cshtml" />
-    <None Include="Service References\wsBankOperation\BankOperation.wsdl" />
-    <None Include="Service References\wsBankOperation\BankOperation.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\wsBankOperation\BankOperation1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\wsBankOperation\BankOperation2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Bank\BankOperations.cshtml" />
     <Content Include="Views\Bank\realizarExtorno.cshtml" />
     <Content Include="Views\Bank\consultarCodigoUsuario.cshtml" />

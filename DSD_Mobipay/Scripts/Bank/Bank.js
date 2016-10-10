@@ -60,11 +60,12 @@ buscarCliente.onclick = function () {
 }
 
 function cargarCliente(xDatos) {
+    console.log(xDatos);
     var xResult = (xDatos).split('|');
     var realizarRecarga = document.getElementById("realizarRecarga")
 
-    if (xResult[0] == "True") {
-        clienteNoEncontrado();
+    if (xResult[0] != "True") {
+        clienteNoEncontrado(xResult[0]);
         realizarRecarga.setAttribute("disabled", "disabled");
     } else {
         var cliente = { "nombre": xResult[1], "dni": xResult[2] }
@@ -110,14 +111,14 @@ function mostrarCliente(cliente) {
     borrarMensajes($("#mensajes"));
 }
 
-function clienteNoEncontrado() {
+function clienteNoEncontrado(xResult) {
     $("#recargarMonedero > .form-group.data").addClass("hidden");
     $("#realizarRecarga").attr("disabled", "disabled").prop('disabled');
     $("#cliente").html("");
     $("#dni").html("");
     var $mensajes = $("#mensajes");
     $mensajes.attr("class", "alert alert-danger");
-    mostrarMensajes(['Cliente no encontrado'], $("#mensajes"));
+    mostrarMensajes([xResult], $("#mensajes"));
 }
 
 function borrarMensajes($divMensajes) {
